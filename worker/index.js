@@ -3,7 +3,7 @@ const redis = require('redis');
 
 const redisClient = redis.createClient({
   host: keys.redisHost,
-  post: keys.redisPort,
+  port: keys.redisPort,
   retry_strategy: () => 1000
 });
 const sub = redisClient.duplicate();
