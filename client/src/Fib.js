@@ -15,11 +15,13 @@ class Fib extends Component {
 
   async fetchValues() {
     const values = await axios.get('/api/values/current');
+    console.log(values)
     this.setState({ values: values.data });
   }
 
   async fetchIndexes() {
     const seenIndexes = await axios.get('/api/values/all');
+    console.log(seenIndexes)
     this.setState({ seenIndexes: seenIndexes.data })
   }
 
@@ -30,10 +32,12 @@ class Fib extends Component {
       index: this.state.index
     });
     this.setState({ index: '' });
+    this.fetchValues();
+    this.fetchIndexes();
   }
 
   renderSeenIndexes() {
-    return this.state.seenIndexes.map(({ number }) => number.join(', '))
+    return this.state.seenIndexes.map(({ number }) => number).join(', ')
   }
 
   renderValues() {
